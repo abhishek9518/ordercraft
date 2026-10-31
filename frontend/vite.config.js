@@ -6,7 +6,15 @@ export default defineConfig({
   server: {
     port: 5173,
     proxy: {
-      '/api': 'http://localhost:5000'
+      '/api': {
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+        secure: false,
+      }
     }
+  },
+  build: {
+    outDir: 'dist',
+    chunkSizeWarningLimit: 1000,
   }
 })
