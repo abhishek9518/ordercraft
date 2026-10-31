@@ -44,7 +44,7 @@ const Login = () => {
       showToast('Login successful! Redirecting...', 'success');
       setTimeout(() => navigate(user.role === 'admin' ? '/admin' : '/employee'), 800);
     } catch (err) {
-      showToast(err.response?.data?.message || 'Invalid credentials. Try demo credentials.');
+      showToast(err.response?.data?.message || (err.message?.includes('Network') ? 'Cannot connect to server. Please make sure backend is running!' : 'Login failed. Check credentials.'));
     } finally {
       setLoading(false);
     }
@@ -245,3 +245,4 @@ const Login = () => {
 };
 
 export default Login;
+
